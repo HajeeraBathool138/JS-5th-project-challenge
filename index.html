@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 90vh;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div#question-text {
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        div#options {
+            font-size: 19px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript Quiz</h1>
+    <div id="question-text"></div>
+    <div id="options"></div>
+    <div id="results"></div>
+
+    <script>
+        let questions = [
+            {
+                "question": "What is the correct way to declare a variable in JavaScript?",
+                "options": ["variable x = 10;", "var x = 10;", "x = 10;", "int x = 10;"],
+                "correctAnswer": "var x = 10;"
+            },
+            {
+                "question": "Which of the following is not a primitive data type in JavaScript?",
+                "options": ["String", "Number", "Object", "Boolean"],
+                "correctAnswer": "Object"
+            },
+            {
+                "question": "What does the !== operator do in JavaScript?",
+                "options": ["Checks for inequality only", "Checks for strict inequality (both value and type)", "Checks for type mismatch", "Assigns a value"],
+                "correctAnswer": "Checks for strict inequality (both value and type)"
+            },
+            {
+                "question": "Which method can be used to iterate over an array?",
+                "options": ["forEach()", "iterate()", "mapEach()", "forLoop()"],
+                "correctAnswer": "forEach()"
+            },
+            {
+                "question": "Which of the following is used to define a function in JavaScript?",
+                "options": ["function myFunc() {}", "func myFunc() {}", "define myFunc() {}", "void myFunc() {}"],
+                "correctAnswer": "function myFunc() {}"
+            },
+            {
+                "question": "Which method converts an object to a JSON string in JavaScript?",
+                "options": ["JSON.parse()", "JSON.stringify()", "JSON.convert()", "JSON.toString()"],
+                "correctAnswer": "JSON.stringify()"
+            },
+            {
+                "question": "What is the purpose of the filter() method in JavaScript?",
+                "options": ["To change the value of each element in an array", "To create a new array with elements that pass a test", "To remove null values from an array", "To find an element in an array"],
+                "correctAnswer": "To create a new array with elements that pass a test"
+            },
+            {
+                "question": "Which operator is used to concatenate strings in JavaScript?",
+                "options": ["&", "+", "*", "||"],
+                "correctAnswer": "+"
+            },
+            {
+                "question": "Which of the following is not a looping structure in JavaScript?",
+                "options": ["for", "while", "repeat", "do...while"],
+                "correctAnswer": "repeat"
+            },
+            {
+                "question": "Which method is used to add elements to the end of an array in JavaScript?",
+                "options": ["push()", "append()", "concat()", "add()"],
+                "correctAnswer": "push()"
+            },
+            {
+                "question": "Which keyword is used to handle exceptions in JavaScript?",
+                "options": ["try", "catch", "throw", "finally"],
+                "correctAnswer": "finally"
+            },
+            {
+                "question": "What does the typeof operator do?",
+                "options": ["It determines the type of a variable or expression", "It returns the size of a variable", "It converts a variable to a string", "It checks if a variable is undefined"],
+                "correctAnswer": "It determines the type of a variable or expression"
+            },
+            {
+                "question": "Which of the following methods is used to delay code execution in JavaScript?",
+                "options": ["setTimeout()", "delay()", "timeout()", "setInterval()"],
+                "correctAnswer": "setTimeout()"
+            },
+            {
+                "question": "What does the Array.prototype.map() method do?",
+                "options": ["Iterates over each element and applies a function", "Filters elements based on a condition", "Concatenates two arrays", "Finds a specific element in the array"],
+                "correctAnswer": "Iterates over each element and applies a function"
+            },
+            {
+                "question": "Which method is used to attach an event handler to an element in JavaScript?",
+                "options": ["addHandler()", "attachEvent()", "addEventListener()", "bindEvent()"],
+                "correctAnswer": "addEventListener()"
+            },
+            {
+                "question": "Which method removes the last element from an array?",
+                "options": ["pop()", "removeLast()", "trim()", "delete()"],
+                "correctAnswer": "pop()"
+            },
+            {
+                "question": "Which of the following is not a JavaScript data type?",
+                "options": ["String", "Number", "Character", "Boolean"],
+                "correctAnswer": "Character"
+            },
+            {
+                "question": "What does the toLowerCase() method do?",
+                "options": ["Converts a string to uppercase", "Converts a string to lowercase", "Removes whitespace from a string", "Trims a string"],
+                "correctAnswer": "Converts a string to lowercase"
+            },
+            {
+                "question": "What does the Promise.all() method do?",
+                "options": ["Resolves all promises concurrently and returns an array of results", "Rejects all promises concurrently and returns an error", "Runs a function on each promise", "Converts a promise to a callback"],
+                "correctAnswer": "Resolves all promises concurrently and returns an array of results"
+            },
+            {
+                "question": "Which method is used to make a GET request in JavaScript?",
+                "options": ["fetch()", "ajax()", "get()", "request()"],
+                "correctAnswer": "fetch()"
+            },
+            {
+                "question": "What is the Browser Object Model (BOM)?",
+                "options": ["A model that represents the browser's window and document objects", "A model that represents the browser's DOM", "A model that represents the browser's events", "A model that represents the browser's storage"],
+                "correctAnswer": "A model that represents the browser's window and document objects"
+            },
+            {
+                "question": "What does the length property return?",
+                "options": ["The number of elements in an array", "The number of characters in a string", "The number of properties in an object", "The number of arguments in a function"],
+                "correctAnswer": "The number of elements in an array"
+            },
+            {
+                "question": "What does the getElementById() method do?",
+                "options": ["Gets an element by its ID", "Gets an element by its class", "Gets an element by its tag name", "Gets an element by its attribute"],
+                "correctAnswer": "Gets an element by its ID"
+            },
+            {
+                "question": "What does the toString() method do?",
+                "options": ["Converts an object to a string", "Converts a string to an object", "Converts a number to a string", "Converts a boolean to a string"],
+                "correctAnswer": "Converts an object to a string"
+            },
+            {
+                "question": "What does the setInterval() method do?",
+                "options": ["Calls a function at a specified interval", "Calls a function once after a specified delay", "Calls a function repeatedly at a specified interval", "Calls a function when the user interacts with the page"],
+                "correctAnswer": "Calls a function repeatedly at a specified interval"
+            },
+            {
+                "question": "What does the includes() method do?",
+                "options": ["Checks if an element is in an array", "Checks if a string is in another string", "Checks if an object has a certain property", "Checks if a function is defined"],
+                "correctAnswer": "Checks if an element is in an array"
+            },
+            {
+                "question": "What does the JSON.parse() method do?",
+                "options": ["Converts a JSON string into a JavaScript object", "Converts a JavaScript object into a JSON string", "Parses a JSON string into an array", "Parses a JSON string into a function"],
+                "correctAnswer": "Converts a JSON string into a JavaScript object"
+            },
+            {
+                "question": "What does the Object.assign() method do?",
+                "options": ["Copies properties from one object to another", "Merges two objects into one", "Creates a new object from an existing one", "Deletes properties from an object"],
+                "correctAnswer": "Copies properties from one object to another"
+            },
+            {
+                "question": "What is the purpose of the stopPropagation() method?",
+                "options": ["Stops the event from propagating to parent elements", "Stops the event from being handled by the current element", "Stops the event from being triggered", "Stops the event from being cancelled"],
+                "correctAnswer": "Stops the event from propagating to parent elements"
+            },
+            {
+                "question": "What does the document.cookie property return?",
+                "options": ["The current cookie value", "The cookie expiration date", "The cookie domain", "The cookie path"],
+                "correctAnswer": "The current cookie value"
+            },
+            {
+                "question": "What is the value of the Number.MAX_SAFE_INTEGER constant?",
+                "options": ["22", "42", "100", "9007199254740991"],
+                "correctAnswer": "22"
+            },
+            {
+                "question": "What does the removeAttribute() method do?",
+                "options": ["Removes an attribute from an element", "Adds an attribute to an element", "Gets an attribute from an element", "Sets an attribute on an element"],
+                "correctAnswer": "Removes an attribute from an element"
+            },
+            {
+                "question": "What is a promise in JavaScript?",
+                "options": ["A function that returns a value", "A variable that holds a value", "An operation that hasn't completed yet", "A callback function"],
+                "correctAnswer": "An operation that hasn't completed yet"
+            },
+            {
+                "question": "What does the function return when it returns a promise?",
+                "options": ["A value", "An error", "A promise", "Nothing"],
+                "correctAnswer": "A promise"
+            },
+            {
+                "question": "What does the insertAdjacentElement() method do?",
+                "options": ["Inserts an element at the beginning of a parent element", "Inserts an element at the end of a parent element", "Inserts an element before a specified element", "Inserts an element after a specified element"],
+                "correctAnswer": "Inserts an element before a specified element"
+            },
+            {
+                "question": "What is the purpose of the class keyword in JavaScript?",
+                "options": ["To define a function", "To define a variable", "To define a class", "To define an object"],
+                "correctAnswer": "To define a class"
+            },
+            {
+                "question": "What does the foreach() method do?",
+                "options": ["Iterates over each element in an array", "Iterates over each property in an object", "Iterates over each element in a collection", "Iterates over each element in a list"],
+                "correctAnswer": "Iterates over each element in an array"
+            }
+        ];
+
+        let askedQuestions = []; // keep track of asked questions
+        let currentQuestion = 0;
+        let score = 0;
+        let questionSet = 1;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function displayQuestion() {
+            const questionText = document.getElementById("question-text");
+            const optionsDiv = document.getElementById("options");
+            const question = questions[currentQuestion];
+            questionText.textContent = question.question;
+            optionsDiv.innerHTML = "";
+            question.options.forEach((option, index) => {
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "option";
+                radio.value = option;
+                const label = document.createElement("label");
+                label.textContent = option;
+                optionsDiv.appendChild(radio);
+                optionsDiv.appendChild(label);
+                optionsDiv.appendChild(document.createElement("br"));
+            });
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector("input[name='option']:checked");
+            if (selectedOption) {
+                const correctAnswer = questions[currentQuestion].correctAnswer;
+                if (selectedOption.value === correctAnswer) {
+                    score++;
+                    console.log(`Correct! The correct answer is: ${correctAnswer}`);
+                } else {
+                    console.log(`Incorrect. The correct answer is: ${correctAnswer}`);
+                }
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    displayQuestion();
+                } else {
+                    displayResults();
+                }
+            }
+        }
+
+        // ...
+
+        function displayResults() {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.textContent = `Till now You have scored ${score * 1} out of ${questionSet * 10}`;
+            alert(`Your final score is ${score * 1} out of ${questionSet * 10}`);
+            if (confirm("Do you want to play another set of 10 questions?")) {
+                score++;
+                currentQuestion = 0; // Reset currentQuestion to 0
+                questionSet++;
+
+                // shuffle the remaining questions and get a new subset of 10 questions
+                let remainingQuestions = availableQuestions.filter(q => !askedQuestions.includes(q));
+                if (remainingQuestions.length === 0) {
+                    alert("Congratulations! You have answered all the questions.");
+                    // end the game
+                } else {
+                    if (remainingQuestions.length < 10) {
+                        // If there are not enough remaining questions, use all of them
+                        questions = remainingQuestions;
+                        availableQuestions = questions;
+                    } else {
+                        remainingQuestions = shuffleArray(remainingQuestions);
+                        questions = remainingQuestions.slice(0, 10);
+                        availableQuestions = questions.concat(remainingQuestions.slice(10));
+                    }
+                    askedQuestions = askedQuestions.concat(questions);
+                    displayQuestion();
+                }
+            } else {
+                // end the game
+            }
+        }
+
+        // initial shuffle and slice of 10 questions
+        availableQuestions = shuffleArray(questions);
+        let initialQuestions = availableQuestions.slice(0, 10);
+        questions = initialQuestions;
+        askedQuestions = askedQuestions.concat(initialQuestions);
+        displayQuestion();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.addEventListener("click", checkAnswer);
+        });
+    </script>
+</body>
+
+</html>
