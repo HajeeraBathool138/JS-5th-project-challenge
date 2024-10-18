@@ -8,7 +8,7 @@
     <style>
         body {
             height: 90vh;
-            background-color: antiquewhite;
+            background-color: lightcoral;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,7 +24,8 @@
             font-size: 19px;
         }
 
-        h4,h5{
+        h4,
+        h5 {
             margin: 5px;
         }
     </style>
@@ -237,7 +238,7 @@
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
+                const j = Math.floor(Math.random() * (i + 1));     //round a number down to the nearest integer
                 [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
